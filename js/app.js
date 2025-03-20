@@ -8,6 +8,9 @@ function adicionar(){
         alert('Insira um nome!');
         return;
     }
+
+    nomeAmigo.value = nomeAmigo.value[0].toUpperCase() + nomeAmigo.value.substring(1);
+
     if(amigosIncluidos.includes(nomeAmigo.value)){
         alert('Este nome já foi incluído!');
         nomeAmigo.value = '';
@@ -29,8 +32,8 @@ function adicionar(){
 }
 
 function sortear(){
-    if(amigosIncluidos.length < 3){
-        alert('É necessário no mínimo 3 amigos para o sorteio!');
+    if(amigosIncluidos.length < 4){
+        alert('É necessário no mínimo 4 amigos para o sorteio!');
         return;
     }
     
