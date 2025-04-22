@@ -31,20 +31,22 @@ function adicionar(){
     atualizarSorteio();
 }
 
-function sortear(){
-    if(amigosIncluidos.length < 4){
+function sortear() {
+    if (amigosIncluidos.length < 4) {
         alert('É necessário no mínimo 4 amigos para o sorteio!');
         return;
     }
     
     embaralhar(amigosIncluidos);
-    console.log(amigosIncluidos.length);
     
     let sorteio = document.getElementById('lista-sorteio');
-    for (let i = 0; i < amigosIncluidos.length; i++){
+    // Cria um ciclo de amigo secreto: cada amigo tira o próximo, o último tira o primeiro (como um círculo)
+    for (let i = 0; i < amigosIncluidos.length; i++) {
         if (i == amigosIncluidos.length - 1) {
+            // Último amigo tira o primeiro para fechar o ciclo
             sorteio.innerHTML = sorteio.innerHTML + amigosIncluidos[i] + ' --> ' + amigosIncluidos[0] + '<br>';
         } else {
+            // Cada amigo tira o próximo da lista
             sorteio.innerHTML = sorteio.innerHTML + amigosIncluidos[i] + ' --> ' + amigosIncluidos[i + 1] + '<br>';
         }
     }
@@ -56,9 +58,12 @@ function excluirAmigo(index) {
     atualizarSorteio();
 }
 
+// Embaralha a lista como um baralho: troca cada elemento com outro aleatoriamente, de trás para frente
 function embaralhar(lista) {
-    for (let indice = lista.length; indice; indice--) {
+    // Percorre a lista de trás para frente (como caixas de uma fileira), de length até 1
+    for (let indice = lista.length; indice; indice--) { // Roda lista.length vezes enquanto indice > 0
         const indiceAleatorio = Math.floor(Math.random() * indice);
+        // Troca o elemento atual com um aleatório à sua frente
         [lista[indice - 1], lista[indiceAleatorio]] = [lista[indiceAleatorio], lista[indice - 1]];
     }
 }
